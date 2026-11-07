@@ -142,6 +142,39 @@ section {
     border-radius: 10px;
 }
 
+/* Order Again */
+/* Welcome Back Message */
+.welcome-note {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Order Again Button */
+.order-again {
+    text-align: center;
+}
+
+.order-again-btn {
+    display: inline-block;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.order-again-btn:hover {
+    background-color: var(--border-primary);
+    color: white;
+}
+
 /* Responsive Design */
 @media (max-width: 700px) {
 
