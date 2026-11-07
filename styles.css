@@ -11,6 +11,7 @@
     --bg-tertiary: #dea579;
 
     --border-primary: #7D935C;
+    --border-secondary: #86bfc6;
 
     --text-primary: #EFE1D6;
     --text-secondary: #cac6bc;
@@ -117,7 +118,13 @@ section {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    cursor: pointer;
+    position: relative;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
 }
+
 .display-card h2 {
     font-size: 1.6em;
     font-weight: bold;
@@ -142,7 +149,42 @@ section {
     border-radius: 10px;
 }
 
-/* Order Again */
+/* Hide the actual radio button */
+.display-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hover Effect */
+.display-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Selected Card */
+.display-card:has(input[type="radio"]:checked) {
+    border: 3px solid var(--border-secondary);
+}
+
+/* Selected Indicator */
+.display-card:has(input[type="radio"]:checked)::after {
+    content: "✓ Selected";
+    display: block;
+    background-color: var(--border-secondary);
+    color: var(--text-primary);
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Keyboard accessibility */
+.display-card:focus-within {
+    outline: 3px solid var(--border-secondary);
+    outline-offset: 3px;
+}
+
+
 /* Welcome Back Message */
 .welcome-note {
     background-color: var(--bg-primary);
