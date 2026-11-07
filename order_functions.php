@@ -7,19 +7,19 @@ function order(): string {
    $drink = trim($_POST['drink'] ?? 'none');
    $drinkSize = trim($_POST['drinkSize'] ?? '');
 
-   $_SESSION['dessert'] = $dessert !== '' && $dessert !== 'none'
+   $_SESSION['dessert'] = ($dessert !== '' && $dessert !== 'none')
       ? $dessert
       : '(not selected)';
-   $_SESSION['drink'] = $drink !== '' && $drink !== 'none'
+   $_SESSION['drink'] = ($drink !== '' && $drink !== 'none')
       ? $drink
       : '(not selected)';
-   $_SESSION['drinkSize'] = $drinkSize !== ''
+   $_SESSION['drinkSize'] = ($drinkSize !== '')
       ? $drinkSize
       : '(not selected)';
 
-   return "Dessert: {$_SESSION['dessert']}<br>"
-      . "Drink: {$_SESSION['drink']}<br>"
-      . "Drink size: {$_SESSION['drinkSize']}";
+   return "Dessert: " . htmlspecialchars($_SESSION['dessert']) . "<br>"
+      . "Drink: " . htmlspecialchars($_SESSION['drink']) . "<br>"
+      . "Drink size: " . htmlspecialchars($_SESSION['drinkSize']);
 }
 
 function sessionValue(string $key): string {
@@ -153,15 +153,21 @@ function orderProfile(): string {
 }
 
 function dessertSelected(string $dessert): string {
-   return ($_SESSION['dessert'] ?? '') === $dessert ? 'selected' : '';
+    return ($_SESSION['dessert'] ?? '(not selected)') === $dessert
+        ? 'selected'
+        : '';
 }
 
 function drinkSelected(string $drink): string {
-   return ($_SESSION['drink'] ?? '') === $drink ? 'selected' : '';
+    return ($_SESSION['drink'] ?? '(not selected)') === $drink
+        ? 'selected'
+        : '';
 }
 
 function drinkSizeSelected(string $drinkSize): string {
-   return ($_SESSION['drinkSize'] ?? '') === $drinkSize ? 'checked' : '';
+    return ($_SESSION['drinkSize'] ?? '(not selected)') === $drinkSize
+        ? 'checked'
+        : '';
 }
 
 ?>
