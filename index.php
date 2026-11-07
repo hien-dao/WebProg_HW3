@@ -1,16 +1,37 @@
 <?php
-   require_once "./order_functions.php";
+require_once "./order_functions.php";
+
+// Check whether the customer submitted an order.
+$orderSubmitted = $_SERVER['REQUEST_METHOD'] === 'POST';
+
+$orderSummary = '';
+
+if ($orderSubmitted) {
    $orderSummary = order();
+
+   // Record the customer's visit.
+   $visitStamp = date('l, F j, Y g:i a');
+
+   setcookie('lastVisit', $visitStamp, time() + 86400, '/');
+}
+
+// Welcome message
+if (isset($_COOKIE['lastVisit'])) {
+   $last = htmlspecialchars($_COOKIE['lastVisit']);
+   $welcomeBack = "Welcome back! Your last visit was {$last}.";
+} else {
+   $welcomeBack = 'First time at Brandon Gorsey\'s Kitchen? Welcome in!';
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A kitchen order form for Brandon Gorsey's Kitchen using PHP for CSC 4370 Homework 3.">
-    <title>Brandon Gorsey's Kitchen</title>
-    <link rel="stylesheet" href="styles.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="A kitchen order form for Brandon Gorsey's Kitchen using PHP for CSC 4370 Homework 3.">
+   <title>Brandon Gorsey's Kitchen</title>
+   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
  
@@ -118,7 +139,7 @@
       <!-- Order Form Section -->
       <section class="order-form">
          <h2>Place Your Order Here</h2>
-         <form method="POST" action="process_order.php">
+         <form method="POST" action="index.php">
             <label for="dessert">Choose a dessert:</label>
             <select name="dessert" id="dessert">
                <option value="none" <?= dessertSelected("none"); ?>>Select a dessert</option>
@@ -152,14 +173,32 @@
          </form>
       </section>
 
-      <section class="insights">
-         <h2>Insights</h2>
+      <?php if ($orderSubmitted): ?>
+      <section class="receipt-section">
+         <h2>Order Receipt</h2>
+         <p class="welcome-note">
+            <?= $welcomeBack ?>
+         </p>
+
+         <div class="receipt-card">
+            <h3>Your Order</h3>
+            <p>
+                  <strong>Dessert:</strong>
+                  <?= htmlspecialchars(sessionValue('dessert')); ?>
+            </p>
+            <p>
+                  <strong>Drink:</strong>
+                  <?= htmlspecialchars(sessionValue('drink')); ?>
+            </p>
+            <p>
+                  <strong>Drink Size:</strong>
+                  <?= htmlspecialchars(sessionValue('drinkSize')); ?>
+            </p>
+         </div>
 
          <div class="insight-card">
-            <h3>Live Guidance</h3>
-
+            <h3>Order Feedback</h3>
             <p><?= htmlspecialchars(completionMessage()); ?></p>
-
             <p class="insight-note">
                   <?= htmlspecialchars(pairingSuggestion()); ?>
             </p>
@@ -178,7 +217,18 @@
                   <p><?= htmlspecialchars(orderProfile()); ?></p>
             </div>
          </div>
+
+         <div class="order-again">
+            <a href="index.php" class="order-again-btn">
+                  Order Again!
+            </a>
+            <a href="forget_order.php" class="clear-order-btn">
+                  Clear Order
+            </a>
+         </div>
       </section>
+      <?php endif; ?>
+
 
    </main>
 </body>
