@@ -20,7 +20,6 @@
 
 html {
     scroll-behavior: smooth;
-
 }
 
 body {
@@ -57,28 +56,6 @@ header p {
     font-style: italic;
 }
 
-/* Navigation Bar */
-nav {
-    background-color: var(--bg-primary);
-    padding: 10px;
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: space-around;
-}
-
-nav a {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 /* Main Content Area */
 main {
     background-image: url('images/background.jpg');
@@ -110,19 +87,19 @@ section {
 .menu-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 5px;
 }
 
 .menu-card h2 {
     text-align: center;
     font-size: 1.5em;
+    margin: 5px;
 }
 
 /* Display Section */
 .display-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 230px));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 240px));
     gap: 5px;
     align-items: center;
     justify-content: space-around;
@@ -169,24 +146,20 @@ section {
     border-radius: 10px;
 }
 
-/* Hide the actual radio button */
 .display-card input[type="radio"] {
     position: absolute;
     opacity: 0;
     pointer-events: none;
 }
 
-/* Hover Effect */
 .display-card:hover {
     transform: translateY(-5px);
 }
 
-/* Selected Card */
 .display-card:has(input[type="radio"]:checked) {
     border: 3px solid var(--border-secondary);
 }
 
-/* Selected Indicator */
 .display-card:has(input[type="radio"]:checked)::after {
     content: "✓ Selected";
     display: block;
@@ -198,43 +171,177 @@ section {
     margin-top: 10px;
 }
 
-/* Keyboard accessibility */
 .display-card:focus-within {
     outline: 3px solid var(--border-secondary);
     outline-offset: 3px;
 }
 
 
-/* Welcome Back Message */
+/* Receipt Section */
 .welcome-note {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    padding: 15px;
+    background-color: var(--bg-tertiary);
+    color: black;
+    padding: 10px;
     border-radius: 8px;
     text-align: center;
     font-weight: bold;
     margin-bottom: 15px;
 }
 
-/* Order Again Button */
-.order-again {
+.receipt-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Drink Size Section */
+.order-form {
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border: 5px solid var(--border-primary);
+    border-radius: 12px;
     text-align: center;
 }
 
-.order-again-btn {
+.order-form h2 {
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.order-form fieldset {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border: none;
+    flex-wrap: wrap;
+}
+
+.order-form fieldset label {
+    position: relative;
+    cursor: pointer;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 15px 35px;
+    min-width: 120px;
+    border: 3px solid transparent;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.order-form fieldset input[type="radio"] {
+    accent-color: #f5d76e;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.order-form fieldset label:hover {
+    background-color: #536b3e;
+    transform: translateY(-3px);
+}
+
+.order-form fieldset label:has(input[type="radio"]:checked) {
+    background-color: #f5d76e;
+    color: #3E512E;
+    border: 3px solid #3E512E;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.order-form button {
+    margin-top: 25px;
+    padding: 14px 35px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.order-form button:hover {
+    background-color: #536b3e;
+    transform: translateY(-2px);
+}
+
+
+/* Button Section */
+.button-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.button {
     display: inline-block;
+    text-align: center;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     text-decoration: none;
-    padding: 12px 30px;
+    padding: 12px 25px;
+    border: 2px solid transparent;
     border-radius: 8px;
+    font-size: 1rem;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.order-again-btn:hover {
-    background-color: var(--border-primary);
-    color: white;
+.primary-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.primary-button .button {
+    width: 100%;
+    max-width: 350px;
+    padding: 16px;
+    font-size: 1.15rem;
+    background-color: #3E512E;
+    color: #EFE1D6;
+    border: 2px solid #3E512E;
+}
+
+.primary-button .button:hover {
+    background-color: #f5d76e;
+    color: #3E512E;
+    border-color: #3E512E;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.secondary-buttons .button {
+    flex: 1;
+    max-width: 170px;
+    padding: 12px 15px;
+    background-color: #ADAC74;
+    color: #3E512E;
+    border: 2px solid #3E512E;
+}
+
+.secondary-buttons .button:hover {
+    background-color: #3E512E;
+    color: #EFE1D6;
+    transform: translateY(-2px);
 }
 
 /* Responsive Design */

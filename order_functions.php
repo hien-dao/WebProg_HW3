@@ -64,16 +64,16 @@ function pairingSuggestion(): string {
       return 'Suggested pairing: Cheesecake and coffee create a classic cafe-style combo.';
    }
 
-   if ($dessert === 'Chocolate Cake' && $drink === 'Milk') {
+   if ($dessert === 'Chocolate' && $drink === 'Milkshake') {
       return 'Suggested pairing: Chocolate cake and milk make a rich and familiar dessert pairing.';
    }
 
-   if ($dessert === 'Tiramisu' && $drink === 'Coffee') {
-      return 'Suggested pairing: Tiramisu and coffee reinforce the espresso flavor profile.';
+   if ($dessert === 'Chocolate' && $drink === 'Coffee') {
+      return 'Suggested pairing: Chocolate and coffee reinforce the espresso flavor profile.';
    }
 
-   if ($dessert === 'Carrot Cake' && $drink === 'Tea') {
-      return 'Suggested pairing: Carrot cake and tea create a lighter and balanced combination.';
+   if ($dessert === 'Pudding' && $drink === 'Tea') {
+      return 'Suggested pairing: Pudding and tea create a lighter and balanced combination.';
    }
 
    return "Suggested pairing: {$dessert} with {$drink} gives the order a custom bistro feel.";
@@ -81,10 +81,13 @@ function pairingSuggestion(): string {
 
 function dessertPrice(): float {
    $prices = [
-      'Cheesecake' => 4.25,
-      'Chocolate Cake' => 4.5,
-      'Carrot Cake' => 4.0,
-      'Tiramisu' => 4.75,
+      'Cheesecake' => 5.99,
+      'Caramel' => 4.99,
+      'Chocolate' => 3.99,
+      'Ice Cream' => 2.99,
+      'Pudding' => 3.49,
+      'Brownie' => 4.49
+
    ];
 
    return $prices[sessionValue('dessert')] ?? 0.0;
@@ -92,10 +95,13 @@ function dessertPrice(): float {
 
 function drinkPrice(): float {
    $basePrices = [
-      'Coffee' => 2.25,
-      'Hot Chocolate' => 2.75,
-      'Root Beer' => 2.5,
-      'Tea' => 2.0,
+      'Coffee' => 2.99,
+      'Tea' => 2.49,
+      'Juice' => 3.49,
+      'Smoothie' => 4.99,
+      'Soda' => 1.99,
+      'Milkshake' => 3.99,
+      
       'Milk' => 1.75,
    ];
    $sizeUpcharge = [

@@ -66,19 +66,22 @@ if (isset($_COOKIE['lastVisit'])) {
                   Large
                </label>
             </fieldset>
-            <button type="submit">Submit Order</button>
          </form>
       </section>
 
       <!-- Button Section -->
       <section class="button-section">
-         <button type="submit">Submit Order</button>
-         <a href="index.php" class="order-again-btn">
-               Previous Order
+         <div class="primary-button">
+            <button type="submit" class="button" form="orderForm">Submit Order</button>
+         </div>
+         <div class="secondary-buttons">
+            <a href="index.php" class="button">
+               Last Order
             </a>
-            <a href="forget_order.php" class="clear-order-btn">
+            <a href="forget_order.php" class="button">
                Clear Order
             </a>
+         </div>
       </section>
 
       <!-- Menu Section -->
@@ -278,6 +281,7 @@ if (isset($_COOKIE['lastVisit'])) {
          </div>
       </section>
 
+      <!-- Receipt Section -->
       <section class="receipt-section">
          <p class="welcome-note">
             <?= $welcomeBack ?>
