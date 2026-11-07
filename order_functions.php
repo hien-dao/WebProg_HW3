@@ -153,19 +153,19 @@ function orderProfile(): string {
 }
 
 function dessertSelected(string $dessert): string {
-    return ($_SESSION['dessert'] ?? '(not selected)') === $dessert
-        ? 'selected'
+    return ($_SESSION['dessert'] ?? '') === $dessert
+        ? 'checked'
         : '';
 }
 
 function drinkSelected(string $drink): string {
-    return ($_SESSION['drink'] ?? '(not selected)') === $drink
-        ? 'selected'
+    return ($_SESSION['drink'] ?? '') === $drink
+        ? 'checked'
         : '';
 }
 
 function drinkSizeSelected(string $drinkSize): string {
-    return ($_SESSION['drinkSize'] ?? '(not selected)') === $drinkSize
+    return ($_SESSION['drinkSize'] ?? '') === $drinkSize
         ? 'checked'
         : '';
 }
